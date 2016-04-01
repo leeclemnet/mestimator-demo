@@ -15,10 +15,14 @@ class L1:
         return np.abs(x)
 
     def influence(self, x):
-        return np.sign(x)
+        infl = np.sign(x)
+        infl[np.abs(x) < 0.1] = np.nan
+        return infl
 
     def weight(self, x):
-        return 1. / np.abs(x)
+        wght = 1. / np.abs(x)
+        wght[np.abs(x) < 0.1] = np.nan
+        return wght
 
 class Cauchy:
     def __init__(self, k):
